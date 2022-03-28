@@ -431,3 +431,37 @@ export default App;
 //C:\ComputerD\E-commerce like Amazon Reactjs2022\amazona5\backend> git push
 
 //Rate and Review Products
+//- open ProductScreen.js file scrol down right before the closing div tags create another div
+//tags to handle Rate and Review Products
+//- create reviewsRef at the top like this let reviewsRef = useRef();
+//- open productModel.js file to implement reviewSchema and use it as review property inside
+//product module
+//- let checkout the result on the browser on the ProductScreen page
+//- next is to display the content of product.reviews in <ListGroup> component like this
+// <ListGroup>
+//   {product.reviews.map((review) => (
+//     <ListGroup.Item key={review._id}>
+//       <strong>{review.name}</strong>
+//       <Rating rating={review.rating} caption=""></Rating>
+//       <p>{review.createdAt.substring(0, 10)}</p>
+//       <p>{review.comment}</p>
+//     </ListGroup.Item>
+//   ))}
+// </ListGroup>
+//- let create a form to enter review on productscreen
+//- add rating variable like this const [rating, setRating] = useState(0);
+//- right before return selection implement submitHandler function
+//- add REFRESH_PRODUCT, CREATE_REQUEST, CREATE_SUCCESS and CREATE_FAIL action type onto the
+// reducer function
+//- use loadingCreateReview in useReducer method.
+//- if loadingCreateReview is true use it in the disable props of Submit button for review form and use it below the button as well.
+//- open productRoutes.js to implement `/api/products/${product._id}/reviews` right after delete api
+//- let checkout the result on the ProductScreen
+//- push the code to local and  remote git
+//- C:\ComputerD\E-commerce like Amazon Reactjs2022\amazona5> git status
+//- C:\ComputerD\E-commerce like Amazon Reactjs2022\amazona5> git add .
+//- C:\ComputerD\E-commerce like Amazon Reactjs2022\amazona5> git commit -m "Rate and Review Products"
+//- for remote git
+//C:\ComputerD\E-commerce like Amazon Reactjs2022\amazona5\backend> git push
+
+//

@@ -464,4 +464,78 @@ export default App;
 //- for remote git
 //C:\ComputerD\E-commerce like Amazon Reactjs2022\amazona5\backend> git push
 
+//Upload Multiple Images for Products
+//- open productModel.js file to add images array of string field
+//- open productRoutes.js file to update put('/:id',) api with product.images array of string
+//right after product.image property
+//- open ProductEditScreen.js file add const [images, setImages] = useState([]); right after const [image, setImage] = useState('');
+//- add setImages(data.images) onto useEffect() react hook method
+//- add images onto submitHandler() function
+//- edit uploadFileHandler to handle to image and images from this
+// const uploadFileHandler = async (e) => {
+//   const file = e.target.files[0];
+//   const bodyFormData = new FormData();
+//   bodyFormData.append('file', file);
+//   try {
+//     dispatch({ type: 'UPLOAD_REQUEST' });
+//     const { data } = await axios.post('/api/upload', bodyFormData, {
+//       headers: {
+//         'Content-Type': 'multipart/form-data',
+//         authorization: `Bearer ${userInfo.token}`,
+//       },
+//     });
+//     dispatch({ type: 'UPLOAD_SUCCESS' });
+//     toast.success('Image uploaded successfully');
+//     setImage(data.secure_url); //data.secure_url is image path fetched from cloudinary
+//   } catch (err) {
+//     toast.error(getError(err));
+//     dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
+//   }
+// };
+//to this
+// const uploadFileHandler = async (e, forImages) => {
+//   const file = e.target.files[0];
+//   const bodyFormData = new FormData();
+//   bodyFormData.append('file', file);
+//   try {
+//     dispatch({ type: 'UPLOAD_REQUEST' });
+//     const { data } = await axios.post('/api/upload', bodyFormData, {
+//       headers: {
+//         'Content-Type': 'multipart/form-data',
+//         authorization: `Bearer ${userInfo.token}`,
+//       },
+//     });
+//     dispatch({ type: 'UPLOAD_SUCCESS' });
+
+//     if (forImages) {
+//       setImages([...images, data.secure_url]);
+//     } else {
+//       setImage(data.secure_url); //data.secure_url is image path fetched from cloudinary
+//     }
+//     toast.success('Image uploaded successfully. Click update to apply it');
+//   } catch (err) {
+//     toast.error(getError(err));
+//     dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
+//   }
+// };
+//- change Upload File to Upload Image
+//- right after Upload Image create new Form.Group boostrap component to handle images array of string
+//- implement deleteFileHandler() function right before return selection
+//- let checkout the result by click on Admin -> click on Products -> click on Edit button -> Upload Additional Image then its display on Additional Image input field and click on Update button
+//- click on Edit button again to view the uploaded file name on the ProductEditScreen.
+//- go back to HomeScreen click on the product will you not see the additional image uploaded
+// display in the ProductScreen to fix this issue open ProductScreen
+//- add const [selectedImage, setSelectedImage] = useState(''); right after comment in ProductScreen.js file
+//- scroll download to <img className="img-large" src={product.image} alt={product.name} />
+//- change the src props from src={product.image} to this src={selectedImage || product.image}
+//- right after Price create thumbnail to display the additional products in ProductScreen
+//- open index.css to style button.thumbnail class selector
+//- let checkout the result on the ProductScreen
+//- push the code to local and  remote git
+//- C:\ComputerD\E-commerce like Amazon Reactjs2022\amazona6> git status
+//- C:\ComputerD\E-commerce like Amazon Reactjs2022\amazona6> git add .
+//- C:\ComputerD\E-commerce like Amazon Reactjs2022\amazona6> git commit -m "Upload Multiple Images for Products"
+//- for remote git
+//C:\ComputerD\E-commerce like Amazon Reactjs2022\amazona6> git push
+
 //

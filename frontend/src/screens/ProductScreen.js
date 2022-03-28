@@ -42,6 +42,7 @@ function ProductScreen() {
   let reviewsRef = useRef();
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
+  const [selectedImage, setSelectedImage] = useState('');
 
   const navigate = useNavigate();
   const params = useParams();
@@ -123,7 +124,11 @@ function ProductScreen() {
     <div>
       <Row>
         <Col md={6}>
-          <img className="img-large" src={product.image} alt={product.name} />
+          <img
+            className="img-large"
+            src={selectedImage || product.image}
+            alt={product.name}
+          />
         </Col>
 
         <Col md={3}>
@@ -138,6 +143,31 @@ function ProductScreen() {
               <Rating rating={product.rating} numReviews={product.numReviews} />
             </ListGroup.Item>
             <ListGroup.Item>Price : ₦{product.price}</ListGroup.Item>
+
+            {/*Display the thumbnail images*/}
+            <ListGroup.Item>
+              <Row xs={1} md={2} className="g-2">
+                {/* xs means xtra large screen, md means median screen */}
+                {
+                  //[product.image, ...product.images] means product.image is main image while ...product.images are the additional images
+                  [product.image, ...product.images].map((x) => (
+                    <Col key={x}>
+                      <Card>
+                        <Button
+                          className="thumbnail"
+                          type="button"
+                          variant="light"
+                          onClick={() => setSelectedImage(x)}
+                        >
+                          <Card.Img variant="top" src={x} alt="product" />
+                        </Button>
+                      </Card>
+                    </Col>
+                  ))
+                }
+              </Row>
+            </ListGroup.Item>
+
             <ListGroup.Item>
               Description : <p>{product.description}</p>
             </ListGroup.Item>
